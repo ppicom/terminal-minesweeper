@@ -1,5 +1,5 @@
 from random import choice
-from .cell import Cell
+from game.cell import Cell
 
 class Field:
     
@@ -11,6 +11,22 @@ class Field:
         
             self.cells[i] = [ Cell(choice([False,True])) for i in range(width) ]
             i+=1
+
+    
+    def tap_cell_at(self, row_n, col_n):
+        row_idx, col_idx = row_n - 1, col_n -1
+        
+        if row_idx >= len(self.cells):
+            return
+
+        row = self.cells[row_idx]
+        if col_idx >= len(row):
+            return
+
+        cell = row[col_idx]
+
+        cell.tap()
+        
 
     def __repr__(self) -> str:
         
