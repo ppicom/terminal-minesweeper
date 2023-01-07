@@ -11,7 +11,8 @@ class Field:
             self.cells[row] = [ Cell(choice([False,True])) for _ in range(width) ]
 
     
-    def tap_cell_at(self, row_n, col_n):
+    def tap_cell_at(self, row_n, col_n) -> None:
+        
         row_idx, col_idx = row_n - 1, col_n -1
         
         if row_idx >= len(self.cells):
