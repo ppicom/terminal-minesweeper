@@ -6,11 +6,9 @@ class Field:
     def __init__(self, height, width):
         
         self.cells = [ [] for i in range(height) ]
-        i = 0
-        while i < len(self.cells):
-        
-            self.cells[i] = [ Cell(choice([False,True])) for i in range(width) ]
-            i+=1
+        for row in range(len(self.cells)):
+
+            self.cells[row] = [ Cell(choice([False,True])) for _ in range(width) ]
 
     
     def tap_cell_at(self, row_n, col_n):
@@ -24,7 +22,6 @@ class Field:
             return
 
         cell = row[col_idx]
-
         cell.tap()
         
 
