@@ -1,2 +1,2 @@
 run:
-	python3 src/minesweeper.py
+	python3 main.py

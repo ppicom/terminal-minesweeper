@@ -1,5 +1,5 @@
 from random import choice
-from cell import Cell
+from .cell import Cell
 
 class Field:
     
