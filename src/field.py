@@ -1,4 +1,5 @@
 from random import choice
+from cell import Cell
 
 class Field:
     
@@ -8,7 +9,7 @@ class Field:
         i = 0
         while i < len(self.cells):
         
-            self.cells[i] = [ choice([0,1]) for i in range(width) ]
+            self.cells[i] = [ Cell(choice([False,True])) for i in range(width) ]
             i+=1
 
     def __repr__(self) -> str:
