@@ -7,6 +7,7 @@ class Field:
     def trailing(row_n):
         return str(row_n+1) + " | "
     
+
     def __init__(self, height, width):
         
         self.cell_rows = [ [] for i in range(height) ]
@@ -28,6 +29,17 @@ class Field:
 
         cell = row[col_idx]
         cell.tap()
+
+
+    def get_game_status(self) -> int:
+        """Returns -1 if a mine is tapped, 1 if all blanks have been tapped, 0 otherwise"""
+        for row in self.cell_rows:
+            for col in row:
+                for cell in col:
+                    if cell.tapped() and cell.has_bomb(): return -1
+                    if not cell.tapped() and not cell.has_bomb(): return 0
+
+        return 1
         
 
     def __repr__(self) -> str:
@@ -40,6 +52,7 @@ class Field:
             r += Field.trailing(i) + " ".join(str_row) + "\n"
         
         return r
+
 
     def header(self, col_n) -> str:
         columns_numbers = Field.padding + " ".join([ str(i+1) for i in range(col_n) ]) + "\n"
