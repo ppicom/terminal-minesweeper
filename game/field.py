@@ -27,10 +27,17 @@ class Field:
         
 
     def __repr__(self) -> str:
+        row_n = len(self.cells)
+        col_n = 0 if row_n == 0 else len(self.cells[0])
         
-        r = ""
+        r = self.header(col_n)
         for row in self.cells:
-            str_row = [ str(n) for n in row ]
+            str_row = [ str(cell) for cell in row ]
             r += " ".join(str_row) + "\n"
         
         return r
+
+    def header(self, col_n) -> str:
+        columns_numbers = " ".join([ str(i+1) for i in range(col_n) ]) + "\n"
+        separator = " ".join([ "-" for _ in range(col_n) ]) + "\n"
+        return columns_numbers + separator
