@@ -5,20 +5,20 @@ class Field:
     
     def __init__(self, height, width):
         
-        self.cells = [ [] for i in range(height) ]
-        for row in range(len(self.cells)):
+        self.cell_rows = [ [] for i in range(height) ]
+        for row in range(len(self.cell_rows)):
 
-            self.cells[row] = [ Cell(choice([False,True])) for _ in range(width) ]
+            self.cell_rows[row] = [ Cell(choice([False,True])) for _ in range(width) ]
 
     
     def tap_cell_at(self, row_n, col_n) -> None:
         
         row_idx, col_idx = row_n - 1, col_n -1
         
-        if row_idx >= len(self.cells):
+        if row_idx >= len(self.cell_rows):
             return
 
-        row = self.cells[row_idx]
+        row = self.cell_rows[row_idx]
         if col_idx >= len(row):
             return
 
@@ -27,11 +27,11 @@ class Field:
         
 
     def __repr__(self) -> str:
-        row_n = len(self.cells)
-        col_n = 0 if row_n == 0 else len(self.cells[0])
+        row_n = len(self.cell_rows)
+        col_n = 0 if row_n == 0 else len(self.cell_rows[0])
         
         r = self.header(col_n)
-        for row in self.cells:
+        for row in self.cell_rows:
             str_row = [ str(cell) for cell in row ]
             r += " ".join(str_row) + "\n"
         
