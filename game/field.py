@@ -2,6 +2,10 @@ from random import choice
 from game.cell import Cell
 
 class Field:
+    padding = "    "
+
+    def trailing(row_n):
+        return str(row_n+1) + " | "
     
     def __init__(self, height, width):
         
@@ -31,13 +35,13 @@ class Field:
         col_n = 0 if row_n == 0 else len(self.cell_rows[0])
         
         r = self.header(col_n)
-        for row in self.cell_rows:
+        for i, row in enumerate(self.cell_rows):
             str_row = [ str(cell) for cell in row ]
-            r += " ".join(str_row) + "\n"
+            r += Field.trailing(i) + " ".join(str_row) + "\n"
         
         return r
 
     def header(self, col_n) -> str:
-        columns_numbers = " ".join([ str(i+1) for i in range(col_n) ]) + "\n"
-        separator = " ".join([ "-" for _ in range(col_n) ]) + "\n"
+        columns_numbers = Field.padding + " ".join([ str(i+1) for i in range(col_n) ]) + "\n"
+        separator = Field.padding + " ".join([ "-" for _ in range(col_n) ]) + "\n"
         return columns_numbers + separator
