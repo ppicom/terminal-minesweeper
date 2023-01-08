@@ -20,11 +20,11 @@ class Field:
         row_idx, col_idx = row_n - 1, col_n -1
         
         if row_idx >= len(self.cell_rows):
-            return
+            return -1
 
         row = self.cell_rows[row_idx]
         if col_idx >= len(row):
-            return
+            return -1
 
         cell = row[col_idx]
         cell.tap()
