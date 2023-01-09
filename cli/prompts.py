@@ -13,9 +13,9 @@ title_prompt = '''
 
 welcome_prompt = "Welcome to a ne game of Minesweeper."
 
-choose_level_prompt = "Please, choose your level: (1) easy, (2) medium or (3) hard:"
+choose_level_prompt = "Please, choose your level: (1) easy, (2) medium or (3) hard:\t"
 
-choose_cell_prompt = "What cell do you want to tap:"
+choose_cell_prompt = "What cell do you want to tap:\t"
 
 player_wins_prompt = "Cheers! You won!"
 
