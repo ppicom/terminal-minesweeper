@@ -1,7 +1,13 @@
-from game.field import Field
+from cli.controller import Controller
 
-f = Field(9, 7)
+def play():
+    controller = Controller()
 
-f.tap_cell_at(2,2)
+    controller.start_game()
 
-print(f)
+    while not controller.is_game_done():
+        controller.play_turn()
+
+    controller.end_game()
+
+play()

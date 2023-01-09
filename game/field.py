@@ -16,30 +16,41 @@ class Field:
             self.cell_rows[row] = [ Cell(choice([False,True])) for _ in range(width) ]
 
     
-    def tap_cell_at(self, row_n, col_n) -> None:
+    def tap_cell_at(self, row_n, col_n) -> bool:
         
         row_idx, col_idx = row_n - 1, col_n -1
         
         if row_idx >= len(self.cell_rows):
-            return -1
+            
+            return False
 
         row = self.cell_rows[row_idx]
         if col_idx >= len(row):
-            return -1
+            
+            return False
 
         cell = row[col_idx]
         cell.tap()
+        return True
 
 
     def get_game_status(self) -> int:
         """Returns -1 if a mine is tapped, 1 if all blanks have been tapped, 0 otherwise"""
-        for row in self.cell_rows:
-            for col in row:
-                for cell in col:
-                    if cell.tapped() and cell.has_bomb(): return -1
-                    if not cell.tapped() and not cell.has_bomb(): return 0
 
-        return 1
+        blanks_remain = False
+        for row in self.cell_rows:
+            
+            for cell in row:
+                
+                if cell.tapped and cell.has_bomb:
+                    
+                    return -1
+                
+                if not cell.tapped and not cell.has_bomb: 
+                    
+                    blanks_remain = True
+
+        return 0 if blanks_remain else 1
         
 
     def __repr__(self) -> str:
